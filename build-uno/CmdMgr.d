@@ -1,4 +1,4 @@
-build-uno/Controle_Serial-v0.5.o: Controle_Serial-v0.5.pde \
+build-uno/CmdMgr.o: CmdMgr.cpp \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/cores/arduino/Arduino.h \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/cores/arduino/binary.h \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/cores/arduino/WCharacter.h \
@@ -9,5 +9,6 @@ build-uno/Controle_Serial-v0.5.o: Controle_Serial-v0.5.pde \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/cores/arduino/Printable.h \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/cores/arduino/new.h \
   /home/rebrec/tools/electronique/arduino-1.0.6/hardware/arduino/variants/standard/pins_arduino.h \
+  CmdMgr.h \
   /home/rebrec/tools/electronique/arduino-1.0.6/libraries/RCSwitch/RCSwitch.h \
-  mydef.h CmdMgr.h
+  mydef.h cmdSend.h

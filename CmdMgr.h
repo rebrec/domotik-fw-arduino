@@ -2,20 +2,22 @@
 #define CmdMgr_h
 #include "Arduino.h"
 
+
 #define WAITING 1
 #define RECEIVING 2
 #define RECEIVED 3
-
+#include <RCSwitch.h>
 
 
 class CmdMgr{
   public:
     int state;
-    CmdMgr();
+    RCSwitch rcsw;
+    CmdMgr(RCSwitch);
     void init();
     void processSerialData();
     void resetCmd();
-
+    void validCMD(String);
   
 
 };
