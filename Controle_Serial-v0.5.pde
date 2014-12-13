@@ -44,20 +44,26 @@ void setup() {
 
 void validCMD(String strCmd)
 {
-	  if (strCmd == "ON"){
-		  Serial.println("Commande : ON");
-		  mySwitch.send(genCastoTrame(3,1,true));// envoie ON sur le Chanel C (3) prise 2
-		  mySwitch.send(genCastoTrame(3,2,true));// envoie ON sur le Chanel C (3) prise 2
-		  mySwitch.send(genCastoTrame(3,3,true));// envoie ON sur le Chanel C (3) prise 2
-	  } else if (strCmd == "OFF"){
-		  Serial.println("Commande : OFF");
-		  mySwitch.send(genCastoTrame(3,1,false));// envoie OFF sur le Chanel C (3) prise 2
-		  mySwitch.send(genCastoTrame(3,2,false));// envoie OFF sur le Chanel C (3) prise 2
-		  mySwitch.send(genCastoTrame(3,3,false));// envoie OFF sur le Chanel C (3) prise 2
-	  } else {
-	  	Serial.println("Commande inconnue");
-	  }
-	
+    String strChan, strSwitch, strAction;
+   //  I A 1 0
+    if (strCmd.substring(0,1) == "I" && strCmd.substring(1,2) == " "){
+        strChan = strCmd.substring(2,3);
+        strSwitch = strCmd.substring(4,5);
+        strAction = strCmd.substring(6,7);
+        Serial.print("Chan : ");
+        Serial.print(strChan);
+        Serial.print(" Switch : ");
+        Serial.print(strSwitch);
+        Serial.print(" Cmd : ");
+        Serial.println(strAction);
+        
+        Serial.println(genCastoTrame(strChan,strSwitch,strAction));
+        
+    } else {
+          Serial.println("Commande inconnue");
+    }
+
+    	
 }
 
 
@@ -65,14 +71,16 @@ void loop()
 {
 	char car;
 	String strCmd = "";
-	Serial.println("Attente Commande (ON/OFF)");
+	strCmd = "I A 1 1";
+        validCMD(strCmd);
+	Serial.println(".");
 	while(1) {
 		while(Serial.available() <= 0);
 		car = (char)Serial.read(); // lit un car 
 		if (car == CR){
 			validCMD(strCmd);
 			strCmd = "";
-			Serial.println("Attente Commande (ON/OFF)");
+			Serial.println(".");
 			break;
 		} else {
 			strCmd += car;

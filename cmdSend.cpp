@@ -4,13 +4,28 @@
 // sChan correspond au Channel paramétré sur la prise ("A","B","C","D")    a=1,b=2 etc car je n'arrive pas à le faire avec des char...
 // nPrise correspond au numero de la prise (1,2,3)
 
-char* genCastoTrame(int sChan, int nPrise, boolean bStatus){ 
+char* genCastoTrame(String strChan, String strPrise, String strStatus){ 
   static char sReturn[25];
+  unsigned char cChan[1];
+  strChan.getBytes(cChan,1);
+  char c;
+  c = cChan[0];
+  Serial.println(c);
+  int intChan = cChan[0] - (int)'A' + 1; // A-D become 1-4
+  Serial.println(cChan[0]);
+  Serial.println('A');
+  Serial.println((int)'A');
+  Serial.println(intChan);
+  int intPrise = strPrise.toInt();
+  int bStatus = strStatus.toInt();
   String res;
+  
+  
+  
   res = String();
   res = PADDING_START;
 
-  switch(sChan){
+  switch(intChan){
       case 1:
           res = res + CHAN_A; break;
       case 2:
@@ -22,7 +37,7 @@ char* genCastoTrame(int sChan, int nPrise, boolean bStatus){
       default:
           return '\0';
   }
-  switch (nPrise){
+  switch (intPrise){
       case 1:
           res = res + PRISE_1; break;
       case 2:

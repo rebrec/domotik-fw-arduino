@@ -18,7 +18,7 @@
 #define CMD_ON "11"
 #define CMD_OFF "00"
 
-char* genCastoTrame(int, int, boolean);
+char* genCastoTrame(String, String, String);
 
 
 #endif
